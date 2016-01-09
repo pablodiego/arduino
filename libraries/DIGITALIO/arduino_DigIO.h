@@ -10,10 +10,6 @@
 
 class digitalIO {
 	
-	int	pin_num;
-	int state;
-	int mode;
-	std::vector<int> pin;
 
 	void set_pin(*pin, int pin_num)
 	{	
@@ -21,18 +17,18 @@ class digitalIO {
 		pin->state = LOW;
 	}
 
-	void pinMode(*pin, mode)
+	void pinMode(int *pin, int mode)
 	{
 		pin->mode = mode;
 	}
 
-	void digitalIO_write(*pin, state)
+	void digitalIO_write(int *pin, int state)
 	{
 		__ESBMC_assert(pin->mode == OUTPUT);
 		pin->cur_state = state;
 	}
 
-	int digitalIO_read(*pin)
+	int digitalIO_read(int *pin)
 	{
 		__ESBMC_assert(pin.mode == INPUT );
 		int value;
