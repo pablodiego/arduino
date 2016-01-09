@@ -1,4 +1,12 @@
-#include <iostream>
+#ifndef DIGITALIO_H
+
+#define ARDUINO_H
+
+#define LOW 0
+#define HIGH 1
+
+#define BOUND 100
+
 
 class digitalIO {
 	
