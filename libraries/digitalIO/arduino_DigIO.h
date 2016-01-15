@@ -8,10 +8,9 @@
 #define BOUND 100
 
 
-class digitalIO {
-	
+class ardDigitalIO {
 
-	void set_pin(*pin, int pin_num)
+	void set_pin(int *pin, int pin_num)
 	{	
 		pin->pin_num = pin_num;
 		pin->state = LOW;
@@ -35,4 +34,6 @@ class digitalIO {
 		__ESBMC_assume (value ==  LOW || value == HIGH);
 		return value;	
 	}
+};
 
+#endif

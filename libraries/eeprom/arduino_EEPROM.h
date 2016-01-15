@@ -22,7 +22,6 @@ class EEPROM {
 			__ESBMC_assert ((address != value), " teste4") ;
 			return byte[address];
 		}
-
 };
 
 #endif
