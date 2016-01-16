@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <math>
+#include <math>
 
 #include "libraries/analog/analogRead.h"
 #include "libraries/digitalIO/arduino_DigIO.h"
