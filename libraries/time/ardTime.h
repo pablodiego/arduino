@@ -3,29 +3,30 @@
 #define TIME_H
 
 class ardTime{
+    public:
 
-	long ardMillis(){
+	long int millis ){
 		long time;
 		__ESBMC_assume(time >= 0 );
 		return time;
 	}
 
-	long ardMicros(){
+	long int micros(){
 		long time;
-		__ESBMC_assum (time >= 0 );
+		__ESBMC_assume (time >= 0 );
 		return time;
 	}
 
-	long ardDelay(){
+	long int delay(int y ){
 		long time;
 		__ESBMC_assume (time >= 0 );
-		return;
+		return 0;
 	}
 
-	long ardDelayMicroSec(){
+	long int delayMicroSec(){
 		long time;
 		__ESBMC_assume (time >= 0 );
-		return;
+		return 0;
 	}
 };
 

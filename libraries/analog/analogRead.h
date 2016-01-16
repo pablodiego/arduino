@@ -9,33 +9,27 @@
 #define OUTPUT 1
 
 class ardAnalog {
+    public:
 
-	void set_digitalPin (float *pin, float digPin_num) {
-		digPin->digPin_num = digPin_num;
-		digPin->currentState = LOW;
+	void set_digitalPin (float *digPin, int digPin_num) {
+		digPin[digPin_num] = digPin_num;
 	}
-	
-	void digitalpinMode(float *pin, float mode)
+
+	float analogReference ( float value)
 	{
-		digitalPin->mode = mode;
+        __ESBMC_assert (value >=0 && value <= 5);
 	}
 
-	float analogReference ( float)
-	{
-	}
-
-	float analogRead (float  pin) {
-		__ESBMC_assert == INPUT;
+	float analogRead (float  digPin) {
 		float digPin_num;
 		__ESBMC_assume(digPin_num >=0 && digPin_num <=1023);
 		return digPin_num;
 	}
 
-	float analogWrite ( float *pin ,float value)
+	float analogWrite ( float* digPin ,float value)
 	{
-		__ESBMC_assert (pin->mode == INPUT);
-		__ESBMC_assert (value >= 0 && value <= 255);
+		__ESBMC_assert (value >= 0 && value <= 255, "Error" );
 	}
-
+};
 #endif
 
