@@ -16,18 +16,18 @@ class ardDigitalIO {
     int cur_state;
     int state;
 
-	void set_pin(int *pin, int pin_num)
+	int set_pin(int *pin, int pin_num)
 	{	
 		pin[pin_num] = pin_num;
 		pin[state] = LOW;
 	}
 
-	void pinMode(int *pin, int mode)
+	int pinMode(int *pin, int mode)
 	{
 		pin[mode] = mode;
 	}
 
-	void digitalWrite(int *pin, int state)
+	int digitalWrite(int *pin, int state)
 	{
 		__ESBMC_assert(pin[mode] == OUTPUT, "Error");
 		pin[cur_state] = state;

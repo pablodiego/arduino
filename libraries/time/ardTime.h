@@ -5,7 +5,7 @@
 class ardTime{
     public:
 
-	long int millis ){
+	long int millis( ){
 		long time;
 		__ESBMC_assume(time >= 0 );
 		return time;

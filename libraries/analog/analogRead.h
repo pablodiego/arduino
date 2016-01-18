@@ -17,7 +17,7 @@ class ardAnalog {
 
 	float analogReference ( float value)
 	{
-        __ESBMC_assert (value >=0 && value <= 5);
+        __ESBMC_assert (value >=0 && value <= 5, " error" );
 	}
 
 	float analogRead (float  digPin) {
