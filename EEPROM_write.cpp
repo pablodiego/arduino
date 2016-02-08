@@ -1,5 +1,5 @@
 #include <iostream>
-#include "libraries/EEPROM/arduino_EEPROM.h"
+#include "libraries/eeprom/arduino_EEPROM.h"
 
 #define SIZE 255
 

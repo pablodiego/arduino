@@ -10,8 +10,8 @@
 #define xAccePin 1
 #define yAccePin 2
 #define zAccePin 3
-#define ledPin 7  
-#define rledPin 7  
+//#define ledPin 7  
+//#define rledPin 7  
 #define Vin 322
 #define xOffset 5081
 #define yOffset 5080
@@ -30,6 +30,9 @@ ardAnalog analog;
 ardDigitalIO pin;   
 ardTime atime;
 ardMath aMath;
+
+int* ledPin;
+int* rledPin;
 
 void A2Ddata (unsigned int n){
     long tempG = 0, tempX = 0,tempY = 0, tempZ = 0;
@@ -50,23 +53,21 @@ void A2Ddata (unsigned int n){
 
 void setup(){
 
-    int *byte;
-
-    pin.set_pin(byte,7);
-    pin.pinMode(byte, OUTPUT);
-   // pin.pinMode(ledPin, OUTPUT);
-   // pin.pinMode(&rledPin, OUTPUT);
+    pin.set_pin(ledPin,7);
+    pin.pinMode(ledPin, OUTPUT);
+    pin.set_pin(rledPin,7);
+    pin.pinMode(rledPin, OUTPUT);
 
     //serial.begin(38400);
 
     analog.analogReference(EXTERNAL);
-   // pin.digitalWrite(rledPin, HIGH);
+    pin.digitalWrite(rledPin, HIGH);
 	atime.delay(1000);
 
     A2Ddata(1000);
     gOffset = gRaw*Vin/100;
     printStr[0] = '\0';
-   // pin.digitalWrite(rledPin, LOW);
+    pin.digitalWrite(rledPin, LOW);
 }
 
 void loop(){
@@ -115,7 +116,7 @@ void loop(){
 			}
 		}
 		
-	//	pin.digitalWrite (ledPin, HIGH);
+		pin.digitalWrite(ledPin, HIGH);
 	}
 }
 

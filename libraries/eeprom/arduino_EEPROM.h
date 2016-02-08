@@ -4,7 +4,9 @@
 
 class EEPROM {
 
-		int EEPROM_write(int *byte, int address, int size, int value)
+		public:
+        
+        int EEPROM_write(int *byte, int address, int size, int value)
 		{
 			__ESBMC_assert ((address < size), " teste") ;
 			__ESBMC_assert ((value <= 255), " teste2");
