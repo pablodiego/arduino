@@ -1,9 +1,9 @@
 #include <iostream>
-#include "libraries/eeprom/arduino_EEPROM.h"
+#include <eeprom.h> 
 
 #define SIZE 255
 
-int setup()
+/*int setup()
 {
 	int eeprom[SIZE+1];
 	int addr = 0;
@@ -15,14 +15,20 @@ int setup()
 		tes.EEPROM_write(eeprom, addr, SIZE, SIZE);
        
 	}
+}*/
+
+void setup()
+{
+	for (int i=0; i < 255; i++)
+		EEPROM.write (i,i);
 }
 
-int loop(){}
+void loop(){}
 
 int main()
 {
 	int addr =0;
 	setup();
-	while (addr < SIZE);
+	while (addr++ < BOUNDS)
 	loop();
 }
