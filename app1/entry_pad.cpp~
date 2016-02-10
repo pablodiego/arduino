@@ -345,8 +345,8 @@ void color_effect(int dRed, int dGreen, int dBlue, int time){
 
 void color_cycle(int c, int r){
   int color = get_color(c, r);
-  //Serial.print("got color");
-  //Serial.print( color, DEC );
+  Serial.print("got color");
+  Serial.print( color, DEC );
   if(color < COLORS){
     color++;
   } else {

@@ -3,7 +3,6 @@
 // The pressed button(s) is/are lit up white while pressed
 // distributed from biboug.org.
 
-#include <iostream>
 #include <eeprom.h>
 #include <arduino.h>
 
@@ -18,7 +17,6 @@
 #define slavesel(x) ((x<6) ? 0 : 1)
 //const byte rowpin[ROWS] = {14,15,16,17};
 //const byte slaveselect[2] = {10, 18};
-
 int rowpin[ROWS] = {14,15,16,17};
 int slaveselect[2] = {10, 18};
 // The pot register numbers for each of the red, green, and blue channels

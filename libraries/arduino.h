@@ -34,20 +34,27 @@ int mode;
 
 
 int pinMode (int pin, int mode){
-		ArduinoPin pin(pin);
-		pin.setMode(mode);
+		ArduinoPin numPin(pin);
+		numPin.setMode(mode);
 	}
 
 
 int digitalWrite (int pin, int state)
 {
-	__ESBMC_assert(pin[mode] == OUTPUT, "Error");
-	pin[cur_state] = LOW;
+	int cur_state;
+	int mode;
+	int* numPin;
+	
+	__ESBMC_assert(numPin[mode] == OUTPUT, "Error");
+	numPin[cur_state] = LOW;
 }
 
 int digitalRead (int pin)
 {
-	__ESBMC_assert(pin[mode] == INPUT, "Error"  );
+	int mode;
+	int* numPin;
+	
+	__ESBMC_assert(numPin[mode] == INPUT, "Error"  );
 	int value;
 	__ESBMC_assume (value ==  LOW || value == HIGH);
 	return value;
@@ -55,13 +62,27 @@ int digitalRead (int pin)
 
 int analogRead (int pin)
 {
-	__ESBMC_assume(digPin_num >=0 && digPin_num <=1023);
+	int numPin;
+	__ESBMC_assume(numPin >=0 && numPin <=1023);
 	return pin;
 }
 
-int analogWrite (int* digPin, int  value)
+int analogWrite (int numPin, int  value)
 {
 	__ESBMC_assert (value >= 0 && value <= 255, "Error" );
+}
+
+long delay(long time)
+{
+	long time;
+	__ESBMC_assume (time > 0);
+}
+
+long millis()
+{
+	long time;
+	__ESBMC_assume (time > 0);
+	return time;
 }
 
 #endif
