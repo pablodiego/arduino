@@ -9,43 +9,47 @@
 #define OUTPUT 1
 
 #define BOUNDS 2
+#define kMemorySize 255
+
+#include <vector>
+using namespace std;
 
 class ArduinoPin{
 public:
-
-int numPin[] ={ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0,0,0,0 };
 
 int current_state;
 int mode;
 
 	
-	ArduinoPin(int numPin){
-		numPin = numPin;
+	/*ArduinoPin(int pin){
+		numPin = pin;
+	};*/
+
+		int getPin(){
+			return pin;
+		}
+		
+	void setPin(int pin){
+		this->pin=pin;
 	}
 
-
 	void setMode (int mode){
-		mode = mode;
+		this->mode = mode;
 	}
 
 	void setState (int state){
 		current_state = state;
 	}
+
+private:
+	int pin;
 };
 
+static vector<ArduinoPin * > pin;
 
 int pinMode (int pin, int mode){
-		ArduinoPin numPin(pin);
-		numPin.setMode(mode);
+		//ArduinoPin numPin(pin);
+		//numPin.setMode(mode);
 	}
 
 
@@ -53,18 +57,18 @@ int digitalWrite (int pin, int state)
 {
 	int cur_state;
 	int mode;
-	int* numPin;
+	//int* numPin;
 	
-	__ESBMC_assert(numPin[mode] == OUTPUT, "Error");
-	numPin[cur_state] = LOW;
+	//__ESBMC_assert(numPin[mode] == OUTPUT, "Error");
+	//numPin[cur_state] = LOW;
 }
 
 int digitalRead (int pin)
 {
 	int mode;
-	int* numPin;
+	//int* numPin;
 	
-	__ESBMC_assert(numPin[mode] == INPUT, "Error"  );
+	//__ESBMC_assert(numPin[mode] == INPUT, "Error"  );
 	int value;
 	__ESBMC_assume (value ==  LOW || value == HIGH);
 	return value;

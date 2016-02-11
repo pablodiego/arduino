@@ -1,33 +1,51 @@
 #ifndef EEPROM_H
 
 #define EEPROM_H
-#define BOUNDS 2
-
 
 class EEPROM {
 
 	public:
 
-		static int* byte;
-
 		static int write(int address, int value)
 		{
 			__ESBMC_assert ((address < 255), " teste") ;
 			__ESBMC_assert ((value <= 255), " teste2");
-			return byte[address] = value;
+			return memory[address] = value;
 		}	
 
 		static int read (int address)
 		{
 			__ESBMC_assert ((address<255), " teste3");
-			return byte[address];
+			return memory[address];
 		}
 
 		static int update(int address, int value)
 		{
 			__ESBMC_assert ((address != value), " teste4") ;
-			return byte[address];
+			return memory[address];
 		}
+
+	private:
+		static const int kMemorySize = 255;
+		static int memory[kMemorySize];
+
+
 };
+
+int EEPROM::memory[EEPROM::kMemorySize] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+
 
 #endif
