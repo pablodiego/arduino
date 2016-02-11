@@ -13,8 +13,18 @@
 class ArduinoPin{
 public:
 
-int numPin;
-int current_state;
+int numPin[] ={ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0 }
+
+	int current_state;
 int mode;
 
 	
@@ -28,7 +38,7 @@ int mode;
 	}
 
 	void setState (int state){
-		state = state;
+		current_state = state;
 	}
 };
 
@@ -64,7 +74,7 @@ int analogRead (int pin)
 {
 	int numPin;
 	__ESBMC_assume(numPin >=0 && numPin <=1023);
-	return pin;
+	return numPin;
 }
 
 int analogWrite (int numPin, int  value)
@@ -72,7 +82,7 @@ int analogWrite (int numPin, int  value)
 	__ESBMC_assert (value >= 0 && value <= 255, "Error" );
 }
 
-long delay()
+long delay(long time)
 {
 	long time;
 	__ESBMC_assume (time > 0);
