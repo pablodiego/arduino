@@ -1,5 +1,4 @@
 #ifndef ARDUINO_H
-
 #define ARDUINO_H
 
 #define LOW 0
@@ -9,128 +8,128 @@
 #define OUTPUT 1
 
 #define BOUNDS 2
-#define kMemorySize 255
 
-#include <iostream>
 #include <vector>
-#include <algorithm>
-using namespace std;
 
-class ArduinoPin{
-
+class ArduinoPin {
 public:
-	
-	int rpin;
-	int mode;
-	int current_state;
 
-	ArduinoPin(){}
+  ArduinoPin() { };
 
-	void setPin(int pin){
-		this->pin = pin;
-	}
+  ~ArduinoPin() { };
 
-	void setMode (int mode){
-		mode = mode;
-	}
+  void set_pin(int pin)
+  {
+    this->pin = pin;
+  }
 
-	void setState (int state){
-		current_state = state;
-	}
+  void set_mode(int mode)
+  {
+    this->mode = mode;
+  }
 
-	int& getPin(){
-		return pin;
-	}
+  void set_state(int current_state)
+  {
+    this->current_state = current_state;
+  }
 
-	int& getMode(){
-		return mode;
-	}
+  int& get_pin()
+  {
+    return pin;
+  }
 
-	int& getState(){
-		return current_state;
-	}
+  int& get_mode()
+  {
+    return mode;
+  }
+
+  int& get_state()
+  {
+    return current_state;
+  }
 
 private:
-	int pin;
+
+  int pin;
+
+  int mode;
+
+  int current_state;
+
 };
 
+const int number_of_pins = 1;
 
-ArduinoPin *vPin = new ArduinoPin[1];
-int size =0;
+ArduinoPin * pin_array = new ArduinoPin[number_of_pins];
 
+int current_size = 0;
 
-int pinMode (int pin, int mode){
-
-	vPin[size].setPin(pin);
-	vPin[size].setMode(mode);
-	vPin[size].setState(LOW);
-	size++;
-
-	}
-
-int digitalWrite (int pin, int state)
+int pinMode (int pin, int mode)
 {
-
-	int j= -1;
-
-	for (int i=0; i < size; i++){
-		if (vPin[i].getPin() == pin){
-			j = i;
-		}
-	} 
-	
-	__ESBMC_assert(j != -1, "Error Cabuloso");
-	int uPin = vPin[j].getMode();
-	__ESBMC_assert(uPin == OUTPUT, "Error");
-	vPin[j].setState(state);
+  pin_array[current_size].set_pin(pin);
+  pin_array[current_size].set_mode(mode);
+  pin_array[current_size].set_state(LOW);
+  current_size++;
 }
 
-int digitalRead (int pin)
+int digitalWrite(int pin, int state)
 {
-	
-	int j= -1;
+  int j = -1;
+  for (int i = 0; i < current_size; i++) {
+    if (pin_array[i].get_pin() == pin) {
+      j = i;
+    }
+  }
 
-	for (int i=0; i < size; i++){
-		if (vPin[i].getPin() == pin){
-			j = i;
-		}
-	}
-
-	int uPin = vPin[j].getState();
-
-	__ESBMC_assume( uPin ==  LOW || uPin == HIGH);
-	return uPin;
+  __ESBMC_assert(j != -1, "Pin has not been initialized previously");
+  int pin_mode = pin_array[j].get_mode();
+  __ESBMC_assert(pin_mode == OUTPUT, "Pin has not been set to OUTPUT mode");
+  pin_array[j].set_state(state);
 }
 
-int analogRead (int pin)
+int digitalRead(int pin)
 {
-	__ESBMC_assume(pin >=0 && pin <=1023);
-	return pin;
+  int j = -1;
+  for (int i = 0; i < current_size; i++) {
+    if (pin_array[i].get_pin() == pin) {
+      j = i;
+    }
+  }
+
+  int current_state = pin_array[j].get_state();
+  __ESBMC_assume(current_state ==  LOW || current_state == HIGH);
+  pin_array[j].set_state(current_state);
+  return current_state;
 }
 
-int analogWrite (int pin, int value)
+int analogRead(int pin)
 {
-	int rvalue;
-	rvalue = value;
-	__ESBMC_assert (rvalue >= 0 && rvalue <= 255, "Error" );
+  __ESBMC_assume(pin >= 0 && pin <= 1023);
+  return pin;
+}
+
+int analogWrite(int pin, int value)
+{
+  int rvalue;
+  rvalue = value;
+  __ESBMC_assert(rvalue >= 0 && rvalue <= 255, "Value must be from 0 to 255" );
 }
 
 void delay(long time)
 {
-	
-	__ESBMC_assert (time > 0, " Error");
+  __ESBMC_assert(time > 0, "Time must be greater than zero");
 }
 
 long millis()
 {
-	long time;
-	__ESBMC_assume (time > 0);
-	return time;
+  long time;
+  __ESBMC_assume(time > 0);
+  return time;
 }
 
-int searchPin (int pin){
-
-	//for (int i =0; i <= kMemorySize , i++) vPin.push_back(i);
+int searchPin (int pin)
+{
+  //for (int i =0; i <= kMemorySize , i++) vPin.push_back(i);
 }
 
 #endif
