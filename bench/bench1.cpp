@@ -4,13 +4,12 @@
 // using Serial.readBytes() to read 500 bytes at a time.
 
 #include <iostream>
-#include <bitset>
-#include "../libraries/arduino.h"
-#include "../libraries/eeprom.h"
-#include "../libraries/serial.h"
+#include "arduino.h"
+#include "eeprom.h"
+#include "serial.h"
 
 
-typedef std::bitset<8> byte;
+typedef unsigned int byte;
 
 // use one of these to define
 // the USB virual serial name
@@ -39,7 +38,7 @@ void loop() {
   char buf[500];
   int count=0;
   int n;
-  
+
   // receive 500 bytes, using Serial.readBytes
   // as many times as necessary until all 500
   while (count < 2) {
@@ -49,11 +48,11 @@ void loop() {
       digitalWrite(3, HIGH);
       //while (!USBSERIAL.available()) ; // wait
     //  while (!Serial.available()) ; // wait
-      digitalWrite(3, LOW); 
-   // }
+      digitalWrite(3, LOW);
+    }
     count = count + n;
   }
-  
+
   // toggle pin 2, so the frequency is kbytes/sec
   if (pinstate == LOW) {
     digitalWrite(2, HIGH);
@@ -75,4 +74,3 @@ int main()
 
     return 0;
 }
-
