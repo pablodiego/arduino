@@ -25,6 +25,12 @@ public:
     int readBytes(char* buffer, int lenght)
     {
 
+        char* buffer = buffer ;
+        int lenght = lenght;
+
+        __ESBMC_assert ( buffer > 0, " ERROR ");
+        __ESBMC_assert ( lenght > 0, " ERROR ");
+
         return lenght;
     }
 
