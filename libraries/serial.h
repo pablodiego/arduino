@@ -2,6 +2,7 @@
 #define SERIAL_H
 
 #include <iostream>
+#include <arduino.h>
 
 
 class SerialPin {
@@ -12,24 +13,27 @@ public:
 
     void begin(long begin)
     {
-
-        __ESBMC_assume ( begin > 0);
+         std::cout << " Begin";
+        long _begin =  begin;
+        __ESBMC_assume ( _begin > 0);
     }
 
     void setTimeout(long timeout)
     {
-
-        __ESBMC_assume (timeout > 0);
+         std::cout << " Timeout";
+        long _timeout =  timeout;
+        __ESBMC_assume (_timeout > 0);
     }
 
     int readBytes(char* buffer, int lenght)
     {
+         std::cout << " readBytes";
 
-        char* buffer = buffer ;
-        int lenght = lenght;
+        char* _buffer = buffer ;
+        int _lenght = lenght;
 
-        __ESBMC_assert ( buffer > 0, " ERROR ");
-        __ESBMC_assert ( lenght > 0, " ERROR ");
+        __ESBMC_assert ( _buffer > 0, " ERROR ");
+        __ESBMC_assert ( _lenght > 0, " ERROR ");
 
         return lenght;
     }

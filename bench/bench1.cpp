@@ -34,14 +34,14 @@ void setup() {
 byte pinstate=LOW;
 
 void loop() {
-    SerialPin Serial;
+  SerialPin Serial;
   char buf[500];
   int count=0;
   int n;
 
   // receive 500 bytes, using Serial.readBytes
   // as many times as necessary until all 500
-  while (count < 2) {
+  while (count < 500) {
     //n = USBSERIAL.readBytes(buf+count, 500-count);
       n =  Serial.readBytes (buf+count, 500 - count);
     if (n == 0) {
@@ -65,12 +65,12 @@ void loop() {
 
 int main()
 {
-    int i;
+    int i = 0;
     setup();
-    while (i < 255) {
-        loop();
-        i++;
+    while (i < 255)
+    {
+    loop();
+    i++;
+    std::cout << " TESTES";;
     }
-
-    return 0;
 }
