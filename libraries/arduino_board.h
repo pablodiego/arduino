@@ -24,7 +24,7 @@ public:
         __ESBMC_assert(m_pins[pin].mode() != undefined, "Pin has not been initialized previously");
         __ESBMC_assert(m_pins[pin].mode() == input, "Pin has not been set to INPUT mode");
         unsigned int value = m_pins[pin].value();
-        __ESBMC_assume(value >= ANALOG_MIN_VALUE && value <= ANALOG_MAX_VALUE);
+        __ESBMC_assume(value >= ANALOG_MIN_VALUE && value <= ANALOG_MAX_READ_VALUE);
         m_pins[pin].set_value(value);
         return value;
     }
@@ -34,7 +34,7 @@ public:
         __ESBMC_assert(pin > 0 && pin <= m_number_of_pins, "Pin number is not valid");
         __ESBMC_assert(m_pins[pin].mode() != undefined, "Pin has not been initialized previously");
         __ESBMC_assert(m_pins[pin].mode() == output, "Pin has not been set to OUTPUT mode");
-        __ESBMC_assert(value >= ANALOG_MIN_VALUE && value <= ANALOG_MAX_VALUE, "Value is not analog");
+        __ESBMC_assert(value >= ANALOG_MIN_VALUE && value <= ANALOG_MAX_WRITE_VALUE, "Value is not analog");
         m_pins[pin].set_value(value);
     }
 

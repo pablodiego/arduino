@@ -13,7 +13,8 @@ const unsigned int OUTPUT = 1;
 const unsigned int LOW = 0;
 const unsigned int HIGH = 1;
 const unsigned int ANALOG_MIN_VALUE = 0;
-const unsigned int ANALOG_MAX_VALUE = 255;
+const unsigned int ANALOG_MAX_READ_VALUE = 255;
+const unsigned int ANALOG_MAX_WRITE_VALUE = 255;
 
 class arduino_pin {
 public:
