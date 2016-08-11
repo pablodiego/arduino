@@ -10,12 +10,10 @@ class arduino_board
 public:
     arduino_board() : m_number_of_pins(16), m_previous_ts(0)
     {
-        m_pins = new arduino_pin[m_number_of_pins];
     }
 
     ~arduino_board()
     {
-        delete[] m_pins;
     }
 
     unsigned int analog_read(const unsigned int& pin)
@@ -75,7 +73,7 @@ public:
 
 private:
     const int m_number_of_pins;
-    arduino_pin* m_pins;
+    arduino_pin m_pins[16];
     unsigned long m_previous_ts;
 };
 
