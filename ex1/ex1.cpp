@@ -4,16 +4,17 @@ int main ()
 {
     using namespace std;
 
-    int num_competidores, min_pontos;
+    int num_competidores = 0;
+    int min_pontos = 0;
     int qtd_aprovados = 0;
     int a = 0;
     float nota_1, nota_2;
 
-    cout << "\nQuantidade de competidores: \n" ;
-    cin >> num_competidores;
+    std::cout << "\nQuantidade de competidores: \n" ;
+    std::cin >> num_competidores;
 
-    cout << "\nMinimo de pontos: \n" ;
-    cin >> min_pontos;
+    std::cout << "\nMinimo de pontos: \n" ;
+    std::cin >> min_pontos;
 
     if (num_competidores > 0 && num_competidores <= 1000)
     {
@@ -21,11 +22,11 @@ int main ()
         {
             while ( a <= num_competidores )
             {
-                cout << "\n NOTA 1o. Fase: \n" ;
-                cin >> nota_1;
+                std::cout << "\n NOTA 1o. Fase: \n" ;
+                std::cin >> nota_1;
 
-                cout << "\nNOTA 2o. Fase \n" ;
-                cin >> nota_2;
+                std::cout << "\nNOTA 2o. Fase \n" ;
+                std::cin >> nota_2;
 
                 if (nota_1 > 0 && nota_1 <= 400)
                 {
@@ -39,7 +40,6 @@ int main ()
         }
     }
 
-    cout << "Quantidade de aprovados :  " + qtd_aprovados;
-
+    std::cout << "\nQuantidade de aprovados :  " << qtd_aprovados << "\n";
     return(0);
 }
