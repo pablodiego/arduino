@@ -20,7 +20,7 @@ int main ()
     {
         if (min_pontos > 0 && min_pontos <=1000)
         {
-            while ( a <= num_competidores )
+            while ( a < num_competidores )
             {
                 // std::cout << "\n NOTA 1o. Fase: \n" ;
                 std::cin >> nota_1;
@@ -28,11 +28,14 @@ int main ()
                 // std::cout << "\nNOTA 2o. Fase \n" ;
                 std::cin >> nota_2;
 
-                if (nota_1 > 0 && nota_1 <= 400)
+                if (nota_1 >= 0 && nota_1 <= 400)
                 {
-                    if (nota_2 > 0 && nota_2 <=400)
+                    if (nota_2 >= 0 && nota_2 <=400)
                     {
-                        qtd_aprovados = qtd_aprovados + 1;
+                        if (nota_1 + nota_2 >= min_pontos )
+                        {
+                            qtd_aprovados = qtd_aprovados +1;
+                        }
                     }
                 }
                 a++;
